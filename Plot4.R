@@ -7,6 +7,9 @@ data$Date <- as.Date(data$Date, format = "%d/%m/%Y")
 util  <- subset(data, subset=(Date >= "2007/02/01" & Date <= "2007/02/02"))
 rm(data)
 
+datetime <- paste(as.Date(util$Date), util$Time)
+util$Datetime <- as.POSIXct(datetime)
+
 par(mfrow=c(2,2), mar=c(4,4,2,1), oma=c(0,0,2,0))
 with(util, plot(Global_active_power ~ Datetime, ylab="Global Active Power", type="l", xlab=""))
 
