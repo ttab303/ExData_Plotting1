@@ -7,6 +7,9 @@ data$Date <- as.Date(data$Date, format = "%d/%m/%Y")
 util  <- subset(data, subset=(Date >= "2007/02/01" & Date <= "2007/02/02"))
 rm(data)
 
+datetime <- paste(as.Date(util$Date), util$Time)
+util$Datetime <- as.POSIXct(datetime)
+
 with(util,plot(Sub_metering_1 ~ Datetime, ylab="Energy sub metering", xlab="", type="l"))
 
 with(util,lines(Sub_metering_2~Datetime,col="Red"))
